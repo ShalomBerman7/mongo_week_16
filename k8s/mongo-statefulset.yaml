@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: week16-mongo
+spec:
+  serviceName: "week16-mongo"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: week16-mongo
+  template:
+    metadata:
+      labels:
+        app: week16-mongo
+    spec:
+      containers:
+      - name: mongo
+        image: docker.io/library/mongo:7.0
+        ports:
+        - containerPort: 27017
+        volumeMounts:
+        - name: data
+          mountPath: /data/db
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 1Gi
