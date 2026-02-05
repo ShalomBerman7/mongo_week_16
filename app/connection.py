@@ -1,13 +1,13 @@
 from pymongo import MongoClient
 from os import getenv
 
+mongo_uri = getenv("MONGO_URI", "mongodb://mongodb-gerstnir-dev.apps.rm2.thpm.p1.openshiftapps.com:27017/")
+mongo_db = getenv("MONGO_DB", "testdb")
+mongo_collection = getenv("MONGO_COLLECTION", "testcollection")
 
-# mongo_uri = getenv("MONGO_URI", "mongodb://mongodb-gerstnir-dev.apps.rm2.thpm.p1.openshiftapps.com:27017/")
-# mongo_db = getenv("MONGO_DB", "testdb")
-# mongo_collection = getenv("MONGO_COLLECTION", "testcollection")
-client = MongoClient("mongodb://localhost:27017/")
-db = client["testdb"]
-collection = db["testcollection"]
+myclient = MongoClient(mongo_uri)
+db = myclient[mongo_db]
+collection = db[mongo_collection]
 
 
 def serialize_doc(doc):

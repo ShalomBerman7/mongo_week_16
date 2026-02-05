@@ -19,5 +19,7 @@ spec:
         env:
         - name: MONGO_URI
           value: "mongodb://mongodb:27017/"
-        - name: DATABASE_NAME
+        - name: MONGO_DB
           value: "testdb"
+        - name: MONGO_COLLECTION
+          value: "testcollection"
