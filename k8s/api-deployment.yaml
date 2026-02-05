@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: week16-app
+spec:
+  selector:
+    matchLabels:
+      app: week16-app
+  template:
+    metadata:
+      labels:
+        app: week16-app
+    spec:
+      containers:
+      - name: app
+        image: shalomberman/week16_mongo:v1
+        ports:
+        - containerPort: 8000
+        env:
+        - name: MONGO_URI
+          value: "mongodb://mongodb:27017/"
+        - name: DATABASE_NAME
+          value: "testdb"
